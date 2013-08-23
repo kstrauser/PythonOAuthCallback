@@ -4,9 +4,10 @@ Python OAuth Callback
 *A local webserver for answering OAuth callbacks*
 
 OAuth is an increasingly popular system for authenticating client software to
-Internet services, but it often requires access to a web server. When the
-client software is Open Source software running on a user's laptop and without
-any external supporting infrastructure, this can present a difficult obstacle.
+Internet services, but it often requires coordination with a webserver hosted
+by the client's developer. When the client software is an Open Source project
+running on a user's computer and without any external supporting
+infrastructure, this can present a difficult obstacle.
 
 This package provides a standard framework for writing OAuth callback handlers
 and running them on a local webserver temporarily set up for just that
@@ -16,8 +17,8 @@ purpose.
 
 Authenticating to an App.net server:
 
-    >>> from oauthcallback.appdotnet import AppDotNetHandler as adn
-    >>> token_info = adn.fetch_access_token(
+    >>> from oauthcallback.appdotnet import AppDotNetHandler
+    >>> token_info = AppDotNetHandler.fetch_access_token(
     ...     client_id='XJtBFQwBesZHYE4TGcFwzvfq6D6a7NCa',
     ...     scope='stream,public_messages')
     >>> token_info['access_token']
