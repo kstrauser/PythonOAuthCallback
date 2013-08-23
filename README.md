@@ -1,16 +1,16 @@
-PythonOAuthCallback
-===================
+Python OAuth Callback
+=====================
 
-*A local webserver for answering OAuth callbacks on localhost*
+*A local webserver for answering OAuth callbacks*
 
 OAuth is an increasingly popular system for authenticating client software to
 Internet services, but it often requires access to a web server. When the
-client software is a piece of Open Source software running on a user's laptop
-and without any supporting infrastructure, this can present a difficult
-obstacle.
+client software is Open Source software running on a user's laptop and without
+any external supporting infrastructure, this can present a difficult obstacle.
 
 This package provides a standard framework for writing OAuth callback handlers
-and running them on a local webserver temporarily setup for just that purpose.
+and running them on a local webserver temporarily set up for just that
+purpose.
 
 ## Example
 
@@ -24,19 +24,19 @@ Authenticating to an App.net server:
     >>> token_info['access_token']
     'BigLongAlphanumericString'
 
-At that point, you have the user's access token for use when accessing their
-account resources.
+You now have a token for accessing the user's account resources.
 
 ## Writing your own handler
 
 Subclass `CallbackHandler` method's:
 
-* `auth_url` returns the URL that the user's web browser with initially open
+* `auth_url` returns the URL that the user's web browser will initially open
   with.
-* `do_Get` analyzes the callback response request to parse out the access
-  token or other relevant data. Call `self.finish_with_result` to stop the web
-  server and return the results to the client program.
+
+* `do_Get` analyzes the callback request to parse out the access token or
+  other relevant data. Call `self.finish_with_result` to stop the web server
+  and return the results to the client program.
 
 ## License
 
-PythonOAuthCallback is available under the MIT License.
+Python OAuth Callback is available under the MIT License.
