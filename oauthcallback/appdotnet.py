@@ -10,7 +10,12 @@ from . import CallbackHandler, PORT
 
 TEMPLATE_SUCCESS = """
 <html>
-<head><title>Successfully authenticated</title></head>
+<head>
+<title>Successfully authenticated</title>
+<script>
+window.close();
+</script>
+</head>
 <body><p>Thanks! You may close this window now.</p></body>
 </html>
 """
