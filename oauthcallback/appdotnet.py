@@ -10,12 +10,14 @@ from . import CallbackHandler, PORT
 
 TEMPLATE_SUCCESS = """
 <html>
+<head><title>Successfully authenticated</title></head>
 <body><p>Thanks! You may close this window now.</p></body>
 </html>
 """
 
 TEMPLATE_FAIL = """
 <html>
+<head><title>Unable to authenticate</title></head>
 <body><p>Something bad happened!</p></body>
 </html>
 """
@@ -23,6 +25,7 @@ TEMPLATE_FAIL = """
 TEMPLATE_REDIRECT = """
 <html>
 <head>
+<title>Redirecting</title>
 <script>
 window.location = window.location.toString().replace('#', '?');
 </script>
@@ -62,7 +65,6 @@ class AppDotNetHandler(CallbackHandler):
         When that new request comes through, the method can harvest the
         access_token and return it.
         """
-        self.send_response(200)
         if '?' in self.path:
             querystring = urlparse.urlparse(self.path).query
             querydict = urlparse.parse_qs(querystring)
@@ -73,13 +75,11 @@ class AppDotNetHandler(CallbackHandler):
             else:
                 template = TEMPLATE_SUCCESS
                 self.finish_with_result({'access_token': token})
-
-            self.send_header('Content-type', 'text/html')
-            self.end_headers()
-            self.wfile.write(template)
-            self.wfile.close()
         else:
-            self.send_header('Content-type', 'text/html')
-            self.end_headers()
-            self.wfile.write(TEMPLATE_REDIRECT)
-            self.wfile.close()
+            template = TEMPLATE_REDIRECT
+
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        self.wfile.write(template)
+        self.wfile.close()
