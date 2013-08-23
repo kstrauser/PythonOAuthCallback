@@ -16,11 +16,10 @@ purpose.
 
 Authenticating to an App.net server:
 
-    >>> from oauthcallback import fetch_access_token
-    >>> from oauthcallback.appdotnet import AppDotNetHandler
-    >>> token_info = fetch_access_token(AppDotNetHandler,
-    ...                                 client_id='foobarbaz',
-    ...                                 scope='stream,public_messages')
+    >>> from oauthcallback.appdotnet import AppDotNetHandler as adn
+    >>> token_info = adn.fetch_access_token(
+    ...     client_id='XJtBFQwBesZHYE4TGcFwzvfq6D6a7NCa',
+    ...     scope='stream,public_messages')
     >>> token_info['access_token']
     'BigLongAlphanumericString'
 

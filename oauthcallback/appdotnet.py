@@ -79,7 +79,7 @@ class AppDotNetHandler(CallbackHandler):
                 template = TEMPLATE_FAIL
             else:
                 template = TEMPLATE_SUCCESS
-                self.finish_with_result({'access_token': token})
+                self._finish_with_result({'access_token': token})
         else:
             template = TEMPLATE_REDIRECT
 
